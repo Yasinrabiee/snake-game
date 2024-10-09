@@ -2,19 +2,19 @@ function rand(min, max) {
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+let scale = 10;
 const canvas = document.querySelector(`#canvas`);
 const ctx = canvas.getContext(`2d`);
 const canvasWidth = document.querySelector(`#canvas`).offsetWidth;
 const canvasHeight = document.querySelector(`#canvas`).offsetHeight;
-let scale = 10;
+const rows = canvasHeight / scale;
+const columns = canvasWidth /  scale;
 
 function Snake() {
 	this.x = 0;
 	this.y = 0;
 	this.xSpeed = scale;
 	this.ySpeed = 0;
-	this.xFood = rand(0, canvasWidth - 1);
-	this.yFood = rand(0, canvasWidth - 1);
 
 	this.snakeDraw = function() {
 		ctx.fillStyle = `#FFF`;
@@ -60,19 +60,31 @@ function Snake() {
 			}
 		}
 	}
+}
 
-	this.dropFood = function() {
+function dropFood() {
+	this.xFood;
+	this.yFood;
+
+	this.setRandomLocation = function() {										
+		this.xFood = (Math.floor(Math.random() * rows - 1) + 1) * scale;
+		this.yFood = (Math.floor(Math.random() * columns - 1) + 1) * scale;
+	}
+
+	this.foodDraw = function() {
 		ctx.fillStyle = `red`;
 		ctx.fillRect(this.xFood, this.yFood, scale, scale);
 	}
 }
 
 const snake = new Snake();
+const food = new dropFood();
+food.setRandomLocation();
 
 setInterval(function() {
-	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+	food.foodDraw();
 	snake.snakeDraw();
-	snake.dropFood();
 },150);
 
 window.addEventListener(`keydown`, function(event) {
