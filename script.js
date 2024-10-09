@@ -13,6 +13,8 @@ function Snake() {
 	this.y = 0;
 	this.xSpeed = scale;
 	this.ySpeed = 0;
+	this.xFood = rand(0, canvasWidth - 1);
+	this.yFood = rand(0, canvasWidth - 1);
 
 	this.snakeDraw = function() {
 		ctx.fillStyle = `#FFF`;
@@ -28,13 +30,6 @@ function Snake() {
 		else if(this.y < 0)
 			this.y = canvasHeight;
 	}
-
-	// this.updateLocation = function() {
-	// 	this.x += this.xSpeed;
-	// 	this.y += this.ySpeed;
-	// 	if(this.x > canvasWidth)
-	// 		this.x = 0;
-	// }
 
 	this.updateDirection = function(userDirection) {
 		switch(userDirection)
@@ -65,6 +60,11 @@ function Snake() {
 			}
 		}
 	}
+
+	this.dropFood = function() {
+		ctx.fillStyle = `red`;
+		ctx.fillRect(this.xFood, this.yFood, scale, scale);
+	}
 }
 
 const snake = new Snake();
@@ -72,6 +72,7 @@ const snake = new Snake();
 setInterval(function() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	snake.snakeDraw();
+	snake.dropFood();
 },150);
 
 window.addEventListener(`keydown`, function(event) {
