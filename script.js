@@ -60,6 +60,12 @@ function Snake() {
 			}
 		}
 	}
+
+	this.eatingFood = function(food) {
+		if(this.x === food.xFood && this.y === food.yFood)
+			return true;
+		return false;
+	}
 }
 
 function dropFood() {
@@ -85,6 +91,8 @@ setInterval(function() {
 	ctx.clearRect(0, 0, canvasWidth, canvasHeight);
 	food.foodDraw();
 	snake.snakeDraw();
+	if(snake.eatingFood(food))
+		food.setRandomLocation();
 },150);
 
 window.addEventListener(`keydown`, function(event) {
