@@ -6,7 +6,9 @@ const scale = 10;
 const canvas = document.querySelector(`#canvas`);
 const ctx = canvas.getContext(`2d`);
 const canvasWidth = document.querySelector(`#canvas`).offsetWidth;
+console.log(canvasWidth);
 const canvasHeight = document.querySelector(`#canvas`).offsetHeight;
+console.log(canvasHeight);
 const rows = canvasHeight / scale;
 const columns = canvasWidth /  scale;
 
