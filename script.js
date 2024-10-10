@@ -24,10 +24,10 @@ function Snake() {
 		this.y += this.ySpeed;
 
 		for(let i = 0; i < this.tail.length; i++) {
-			ctx.fillStyle = `green`
+			ctx.fillStyle = `lightgreen`
 		    ctx.fillRect(this.tail[i].x, this.tail[i].y, scale, scale);
 	    }
-	    ctx.fillStyle = `#FFF`;
+	    ctx.fillStyle = `white`;
 	    ctx.fillRect(this.x , this.y, scale, scale);
 
 		for(let i = 0; i < this.tail.length - 1; i++) {
@@ -115,4 +115,20 @@ setInterval(function() {
 window.addEventListener(`keydown`, function(event) {
 	const userDirection = event.key.replace(`Arrow`, ``);
 	snake.updateDirection(userDirection);
+});
+
+document.querySelector(`.btn-Up`).addEventListener('click', function(event) {
+	snake.updateDirection(`Up`);	
+});
+
+document.querySelector(`.btn-Left`).addEventListener('click', function(event) {
+	snake.updateDirection(`Left`);
+});
+
+document.querySelector(`.btn-Right`).addEventListener('click', function(event) {
+	snake.updateDirection(`Right`);
+});
+
+document.querySelector(`.btn-Down`).addEventListener('click', function(event) {
+	snake.updateDirection(`Down`);
 });

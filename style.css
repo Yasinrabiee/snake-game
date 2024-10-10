@@ -6,13 +6,21 @@ body {
 	font-family: sans-serif;
 	height: 100vh;
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	overflow: hidden;
+	gap: 10px;
 }
 
 #canvas {
 	background-color: #1E1E1E;
-	border-radius: 3px;
-/*	padding: 3px;*/
+	border-radius: 4px;
+}
+
+.btn-container {
+	display: grid;
+	grid-template-columns: auto auto;
+	grid-template-rows: auto auto;
+	gap: 6px;
 }
