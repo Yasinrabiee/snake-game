@@ -2,13 +2,6 @@ function rand(min, max) {
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-// const colors = [
-// 	`lightgreen`,
-// 	`lightred`,
-// 	`lightblue`,
-// 	`hotpink`
-// ];
-
 const scale = 10;
 const canvas = document.querySelector(`#canvas`);
 const ctx = canvas.getContext(`2d`);
