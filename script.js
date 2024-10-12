@@ -2,13 +2,18 @@ function rand(min, max) {
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+// const colors = [
+// 	`lightgreen`,
+// 	`lightred`,
+// 	`lightblue`,
+// 	`hotpink`
+// ];
+
 const scale = 10;
 const canvas = document.querySelector(`#canvas`);
 const ctx = canvas.getContext(`2d`);
 const canvasWidth = document.querySelector(`#canvas`).offsetWidth;
-console.log(canvasWidth);
 const canvasHeight = document.querySelector(`#canvas`).offsetHeight;
-console.log(canvasHeight);
 const rows = canvasHeight / scale;
 const columns = canvasWidth /  scale;
 
@@ -25,8 +30,8 @@ function Snake() {
 		this.x += this.xSpeed;
 		this.y += this.ySpeed;
 
+		ctx.fillStyle = `lightgreen`;
 		for(let i = 0; i < this.tail.length; i++) {
-			ctx.fillStyle = `lightgreen`
 		    ctx.fillRect(this.tail[i].x, this.tail[i].y, scale, scale);
 	    }
 	    ctx.fillStyle = `white`;
@@ -119,18 +124,18 @@ window.addEventListener(`keydown`, function(event) {
 	snake.updateDirection(userDirection);
 });
 
-document.querySelector(`.btn-Up`).addEventListener('click', function(event) {
+document.querySelector(`#up`).addEventListener('click', function(event) {
 	snake.updateDirection(`Up`);	
 });
 
-document.querySelector(`.btn-Left`).addEventListener('click', function(event) {
+document.querySelector(`#left`).addEventListener('click', function(event) {
 	snake.updateDirection(`Left`);
 });
 
-document.querySelector(`.btn-Right`).addEventListener('click', function(event) {
+document.querySelector(`#right`).addEventListener('click', function(event) {
 	snake.updateDirection(`Right`);
 });
 
-document.querySelector(`.btn-Down`).addEventListener('click', function(event) {
+document.querySelector(`#down`).addEventListener('click', function(event) {
 	snake.updateDirection(`Down`);
 });
