@@ -2,7 +2,7 @@ function rand(min, max) {
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-const scale = 10;
+const scale = 12;
 const canvas = document.querySelector(`#canvas`);
 const ctx = canvas.getContext(`2d`);
 const canvasWidth = document.querySelector(`#canvas`).offsetWidth;
@@ -24,18 +24,23 @@ function Snake() {
 		this.y += this.ySpeed;
 
 		ctx.fillStyle = `lightgreen`;
+
 		for(let i = 0; i < this.tail.length; i++) {
 		    ctx.fillRect(this.tail[i].x, this.tail[i].y, scale, scale);
 	    }
+
 	    ctx.fillStyle = `white`;
 	    ctx.fillRect(this.x , this.y, scale, scale);
+	    const previousPosition = { x: this.x, y: this.y};
 
-		for(let i = 0; i < this.tail.length - 1; i++) {
-			this.tail[i] = this.tail[i + 1];
-		}
+	    for(let i = 0; i < this.tail.length - 1; i++) {
+	    	this.tail[i] = this.tail[i + 1];
+	    }
 
-		this.tail[this.total - 1] = {x: this.x, y: this.y}
-
+	    if(this.total > 0) {
+	    	this.tail[this.total - 1] = previousPosition;
+	    }
+		
 		if(this.x > canvasWidth)
 			this.x = 0;
 		else if(this.x < 0)
@@ -44,30 +49,38 @@ function Snake() {
 		 	this.y = 0;
 		else if(this.y < 0)
 			this.y = canvasHeight;
+
+		for(let i = 0; i < this.tail.length - 1; i++) {
+			if(this.tail[i].x === this.x && this.tail[i].y === this.y) {
+				clearInterval(interval);
+				alert(`Game Over!`);
+				window.location = ``;
+			}
+		}
 	}
 
 	this.updateDirection = function(userDirection) {
 		switch(userDirection)
 		{
-			case 'Up':
+			case 'up':
 			{
 				this.xSpeed = 0;
 				this.ySpeed = -scale;
 				break;
 			}
-			case 'Down': 
+			case 'down': 
 			{
 				this.xSpeed = 0;
 				this.ySpeed = scale;
 				break;
 			}
-			case 'Left': 
+			case 'left': 
 			{
 				this.xSpeed = -scale;
 				this.ySpeed = 0;
 				break;
 			}
-			case 'Right': 
+			case 'right': 
 			{
 				this.xSpeed = scale;
 				this.ySpeed = 0;
@@ -104,7 +117,7 @@ const snake = new Snake();
 const food = new dropFood();
 food.setRandomLocation();
 
-setInterval(function() {
+const interval = setInterval(function() {
 	ctx.clearRect(0, 0, canvasWidth, canvasHeight);
 	food.foodDraw();
 	snake.snakeDraw();
@@ -113,22 +126,22 @@ setInterval(function() {
 },150);
 
 window.addEventListener(`keydown`, function(event) {
-	const userDirection = event.key.replace(`Arrow`, ``);
+	const userDirection = event.key.replace(`Arrow`, ``).toLowerCase();
 	snake.updateDirection(userDirection);
 });
 
-document.querySelector(`#up`).addEventListener('click', function(event) {
-	snake.updateDirection(`Up`);	
+document.querySelector(`#up`).addEventListener(`click`, function(event) {
+	snake.updateDirection(`up`);	
 });
 
-document.querySelector(`#left`).addEventListener('click', function(event) {
-	snake.updateDirection(`Left`);
+document.querySelector(`#left`).addEventListener(`click`, function(event) {
+	snake.updateDirection(`left`);
 });
 
-document.querySelector(`#right`).addEventListener('click', function(event) {
-	snake.updateDirection(`Right`);
+document.querySelector(`#right`).addEventListener(`click`, function(event) {
+	snake.updateDirection(`right`);
 });
 
-document.querySelector(`#down`).addEventListener('click', function(event) {
-	snake.updateDirection(`Down`);
+document.querySelector(`#down`).addEventListener(`click`, function(event) {
+	snake.updateDirection(`down`);
 });
