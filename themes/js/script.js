@@ -157,10 +157,6 @@ document.querySelector(`#down`).addEventListener(`click`, function(event) {
 	snake.updateDirection(`down`);
 });
 
-btn.onclick = function() {
-	modalContent.style.top = `0`;
-}
-
 span.onclick = function() {
 	modalContent.style.top = `-275px`;
 	window.location = ``;
