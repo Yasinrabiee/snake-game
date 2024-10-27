@@ -7,8 +7,26 @@ const canvas = document.querySelector(`#canvas`);
 const ctx = canvas.getContext(`2d`);
 const canvasWidth = document.querySelector(`#canvas`).offsetWidth;
 const canvasHeight = document.querySelector(`#canvas`).offsetHeight;
-const rows = canvasHeight / scale;
+const modal = document.querySelector(`#myModal`);
+const modalContent = document.querySelector(`.modal-content`);
+const btn = document.querySelector(`#myBtn`);
+const span = document.querySelector(`.close`);
 const columns = canvasWidth /  scale;
+const rows = canvasHeight / scale;
+
+function En2Fa(value) {
+	value = value.replace(/0/g, `۰`);
+	value = value.replace(/1/g, `۱`);
+	value = value.replace(/2/g, `۲`);
+	value = value.replace(/3/g, `۳`);
+	value = value.replace(/4/g, `۴`);
+	value = value.replace(/5/g, `۵`);
+	value = value.replace(/6/g, `۶`);
+	value = value.replace(/7/g, `۷`);
+	value = value.replace(/8/g, `۸`);
+	value = value.replace(/9/g, `۹`);
+	return value;
+}
 
 function Snake() {
 	this.x = 0;
@@ -23,7 +41,7 @@ function Snake() {
 		this.x += this.xSpeed;
 		this.y += this.ySpeed;
 
-		ctx.fillStyle = `lightgreen`;
+		ctx.fillStyle = `#43A047`;
 
 		for(let i = 0; i < this.tail.length; i++) {
 		    ctx.fillRect(this.tail[i].x, this.tail[i].y, scale, scale);
@@ -33,13 +51,11 @@ function Snake() {
 	    ctx.fillRect(this.x , this.y, scale, scale);
 	    const previousPosition = { x: this.x, y: this.y};
 
-	    for(let i = 0; i < this.tail.length - 1; i++) {
+	    for(let i = 0; i < this.tail.length - 1; i++)
 	    	this.tail[i] = this.tail[i + 1];
-	    }
 
-	    if(this.total > 0) {
+	    if(this.total > 0) 
 	    	this.tail[this.total - 1] = previousPosition;
-	    }
 		
 		if(this.x > canvasWidth)
 			this.x = 0;
@@ -53,8 +69,9 @@ function Snake() {
 		for(let i = 0; i < this.tail.length - 1; i++) {
 			if(this.tail[i].x === this.x && this.tail[i].y === this.y) {
 				clearInterval(interval);
-				alert(`Game Over!`);
-				window.location = ``;
+				document.querySelector(`#total-english`).innerHTML = this.total;
+				document.querySelector(`#total-persian`).innerHTML = En2Fa(this.total);
+				modalContent.style.top = `0px`;
 			}
 		}
 	}
@@ -145,3 +162,12 @@ document.querySelector(`#right`).addEventListener(`click`, function(event) {
 document.querySelector(`#down`).addEventListener(`click`, function(event) {
 	snake.updateDirection(`down`);
 });
+
+btn.onclick = function() {
+	modalContent.style.top = `0`;
+}
+
+span.onclick = function() {
+	modalContent.style.top = `-226px`;
+	window.location = ``;
+}

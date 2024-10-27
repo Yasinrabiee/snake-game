@@ -4,11 +4,14 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Snake Game</title>
-	<link rel="stylesheet" href="style.css">
-	<script src="script.js" defer></script>
+	<link rel="stylesheet" href="themes/css/style.css">
+	<script src="themes/js/script.js" defer></script>
 </head>
 <body>
 	<canvas id="canvas" width="300" height="300"></canvas>
+	<div class="pop-up">
+		
+	</div>
 	<div class="controls">
 		<div class="controls-buttons">
 			<button class="controls-button" id="up">
@@ -35,5 +38,21 @@
 			</button>
 		</div>
 	</div>
+	<button id="myBtn">Open Modal</button>
+	<div id="myModal" class="modal">
+	  <div class="modal-content">
+	    <div class="modal-header">
+	      <span class="close">&times;</span>
+	      <h2>Snake Game</h2>
+	    </div>
+	    <div class="modal-body">
+	      <p>Total Points: <span id="total-english"></span></p>
+	      <p>مجموع امتیازات: <span id="total-persian"></span></p>
+	    </div>
+	    <div class="modal-footer">
+	      <h3>Modal Footer</h3>
+	    </div>
+	  </div>
+	</div> 
 </body>
 </html>
