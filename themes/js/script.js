@@ -55,8 +55,16 @@ function Snake() {
 		for(let i = 0; i < this.tail.length - 1; i++) {
 			if(this.tail[i].x === this.x && this.tail[i].y === this.y) {
 				clearInterval(interval);
+				if(localStorage.getItem(`record`) === null) {
+					localStorage.setItem(`record`, this.total);
+				}
+				else {
+					if(this.total > localStorage.getItem(`record`))
+						localStorage.setItem(`record`, this.total);	
+				}
 				document.querySelector(`#total-english`).innerHTML = this.total;
 				document.querySelector(`#total-persian`).innerHTML = this.total;
+				document.querySelector(`#record`).innerHTML = localStorage.getItem(`record`);
 				modalContent.style.top = `0px`;
 			}
 		}
