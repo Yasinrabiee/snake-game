@@ -14,20 +14,6 @@ const span = document.querySelector(`.close`);
 const columns = canvasWidth /  scale;
 const rows = canvasHeight / scale;
 
-function En2Fa(value) {
-	value = value.replace(/0/g, `۰`);
-	value = value.replace(/1/g, `۱`);
-	value = value.replace(/2/g, `۲`);
-	value = value.replace(/3/g, `۳`);
-	value = value.replace(/4/g, `۴`);
-	value = value.replace(/5/g, `۵`);
-	value = value.replace(/6/g, `۶`);
-	value = value.replace(/7/g, `۷`);
-	value = value.replace(/8/g, `۸`);
-	value = value.replace(/9/g, `۹`);
-	return value;
-}
-
 function Snake() {
 	this.x = 0;
 	this.y = 0;
@@ -70,7 +56,7 @@ function Snake() {
 			if(this.tail[i].x === this.x && this.tail[i].y === this.y) {
 				clearInterval(interval);
 				document.querySelector(`#total-english`).innerHTML = this.total;
-				document.querySelector(`#total-persian`).innerHTML = En2Fa(this.total);
+				document.querySelector(`#total-persian`).innerHTML = this.total;
 				modalContent.style.top = `0px`;
 			}
 		}
@@ -168,6 +154,6 @@ btn.onclick = function() {
 }
 
 span.onclick = function() {
-	modalContent.style.top = `-226px`;
+	modalContent.style.top = `-275px`;
 	window.location = ``;
 }

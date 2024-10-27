@@ -1,9 +1,14 @@
+@font-face {
+	font-family: Vazir;
+	src: url('../fonts/Vazirmatn-Regular.woff2');
+}
+
 * {
 	box-sizing: border-box;
 }
 
 body {
-	font-family: sans-serif;
+	font-family: Vazir;
 	height: 100vh;
 	display: flex;
 	flex-direction: column;
@@ -52,7 +57,7 @@ body {
 
 .modal-content {
   position: fixed;
-  top: -226px;
+  top: -275px;
   background-color: #FEFEFE;
   width: 100%;
   transition: all 400ms;
