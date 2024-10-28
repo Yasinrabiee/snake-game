@@ -64,7 +64,8 @@ function Snake() {
 				}
 				document.querySelector(`#total-english`).innerHTML = this.total;
 				document.querySelector(`#total-persian`).innerHTML = this.total;
-				document.querySelector(`#record`).innerHTML = localStorage.getItem(`record`);
+				document.querySelector(`#record`).innerHTML =
+				localStorage.getItem(`record`);
 				modalContent.style.top = `0px`;
 			}
 		}
