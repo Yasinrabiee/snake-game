@@ -1,0 +1,30 @@
+{
+  "name": "Snake Game",
+  "short_name": "Snake Game",
+  "start_url": "https://yasinrabiee.github.io/snake-game/",
+  "scope": "https://yasinrabiee.github.io/snake-game/",
+  "display": "standalone",
+  "background_color": "#FFF",
+  "theme_color": "#FFF",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "./snake.png",
+      "type": "image/png",
+      "sizes": "144x144",
+      "purpose": "any"
+    },
+    {
+      "src": "./snake.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any"
+    },
+    {
+      "src": "./snake.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "maskable"
+    }
+  ]
+}
