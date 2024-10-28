@@ -9,7 +9,6 @@ self.addEventListener('install', function(e) {
             return cache.addAll([
                 "./themes/css/style.css",
                 "./themes/js/script.js",
-                "./themes/js/jquery-3.7.1.min.js",
                 "./themes/fonts/Vazirmatn-Bold.woff2",
                 "./themes/fonts/Vazirmatn-Regular.woff2"
             ]).then(function() {
